@@ -29,4 +29,8 @@ public class NewsService {
     public List<NewsArticle> findByDateAndTitle(Date date, String title, Pageable pageable) {
         return newsRepository.findByDateAndTitle(date, title, pageable);
     }
+
+    public void addArticle(NewsArticle newsArticle) {
+        newsRepository.save(newsArticle);
+    }
 }

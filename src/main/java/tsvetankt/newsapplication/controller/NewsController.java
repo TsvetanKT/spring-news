@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,5 +36,11 @@ public class NewsController {
             @RequestParam(name = "date", required = false) Date date, Pageable pageable) {
 
         return newsService.findByDateAndTitle(date, title, pageable);
+    }
+    
+    @ApiOperation(value = "Save new News Article")
+    @RequestMapping(value = "/article", method = RequestMethod.POST)
+    public void addArticle(@RequestBody NewsArticle newsArticle) {
+        newsService.addArticle(newsArticle);
     }
 }
